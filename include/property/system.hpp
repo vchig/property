@@ -15,6 +15,8 @@ public:
 
     std::string propertyName(int i) const;
 
+    bool propertyIsReadOnly(int i) const;
+
     boost::any getProperty(int i) const;
 
     boost::any getProperty(const std::string& name);

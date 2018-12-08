@@ -15,6 +15,15 @@ std::string property::system::propertyName(int i) const
     return pos->first;
 }
 
+bool property::system::propertyIsReadOnly(int i) const
+{
+    if( propertyCount() <= i )
+        return true;
+    auto pos = properties_.begin();
+    std::advance(pos, i);
+    return pos->second->is_read_only();
+}
+
 boost::any property::system::getProperty(int i) const
 {
     if( propertyCount() <= i )
