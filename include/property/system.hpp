@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <iostream>
 
 namespace property {
 
@@ -35,13 +36,19 @@ protected:
     template< typename C, typename T >
     void makeProperty(const std::string &name, C *object, T (C::*getter)() const, void (C::*setter)(const T&))
     {
-        properties_.insert( std::make_pair(name, std::shared_ptr<property_base>(new property<C, T>(object, getter, setter))) );
+        properties_.insert( std::make_pair(name, std::shared_ptr<property_base>(new property_rw<decltype (setter)>(object, getter, setter))) );
+    }
+
+    template< typename C, typename T >
+    void makeProperty(const std::string &name, C *object, T (C::*getter)() const, void (C::*setter)(T))
+    {
+        properties_.insert( std::make_pair(name, std::shared_ptr<property_base>(new property_rw<decltype (setter)>(object, getter, setter))) );
     }
 
     template< typename C, typename T >
     void makeProperty(const std::string &name, C *object, T (C::*getter)() const)
     {
-        properties_.insert( std::make_pair(name, std::shared_ptr<property_base>(new property<C, T>(object, getter))) );
+        properties_.insert( std::make_pair(name, std::shared_ptr<property_base>(new property_read<C, T>(object, getter))) );
     }
 
 private:
