@@ -15,6 +15,6 @@ set_target_properties( ${PROJECT_NAME} PROPERTIES
     CXX_STANDARD_REQUIRED YES )
 
 if( BUILD_EXAMPLE )
-    add_executable( example example/example.cpp )
-    target_link_libraries( example ${PROJECT_NAME} )
+    add_executable( prop_example example/example.cpp )
+    target_link_libraries( prop_example ${PROJECT_NAME} )
 endif()
