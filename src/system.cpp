@@ -49,3 +49,12 @@ void property::system::setProperty(const std::string &name, const boost::any &va
             prop->set( value );
     }
 }
+
+void property::system::setProperty(int i, const boost::any &value)
+{
+    if( propertyCount() <= i )
+        return;
+    auto pos = properties_.begin();
+    std::advance(pos, i);
+    pos->second->set(value);
+}

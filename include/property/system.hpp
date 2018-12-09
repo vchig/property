@@ -34,6 +34,8 @@ public:
 
     void setProperty(const std::string& name, const boost::any& value);
 
+    void setProperty(int i, const boost::any& value);
+
 protected:
     template< typename C, typename T >
     void makeProperty(const std::string &name, C *object, T (C::*getter)() const, void (C::*setter)(const T&))
