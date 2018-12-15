@@ -11,6 +11,8 @@ class system
 {
 public:
 
+    bool hasProperty(const std::string& name) const;
+
     int propertyCount() const;
 
     std::string propertyName(int i) const;

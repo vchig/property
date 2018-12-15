@@ -1,6 +1,11 @@
 #include <property/system.hpp>
 #include <iterator>
 
+bool property::system::hasProperty(const std::string &name) const
+{
+    return properties_.find(name) != properties_.end();
+}
+
 int property::system::propertyCount() const
 {
     return static_cast<int>( properties_.size() );
