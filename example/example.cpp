@@ -4,8 +4,8 @@
 
 class Test : public property::system
 {
-    float value_;
     std::string msg_;
+    float value_;
     int counter_;
 public:
     Test()
