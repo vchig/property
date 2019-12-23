@@ -79,8 +79,35 @@ private:
 };
 
 template < class Type >
-class Property
+class Property final
 {
+public:
+    typedef Type                               base_type;
+    typedef std::function< void( base_type ) > setter_type;
+
+    explicit Property()
+        : value_()
+    {
+    }
+
+    Property &operator=( const base_type &value )
+    {
+        set( value );
+        return *this;
+    }
+
+    operator base_type() const noexcept { return get(); }
+
+    base_type get() const noexcept { return value_; }
+
+    void set( const base_type &value )
+    {
+        if( value_ == value ) { return; }
+        value_ = value;
+    }
+
+private:
+    base_type value_;
 };
 
 } // namespace property
